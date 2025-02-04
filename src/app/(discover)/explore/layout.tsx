@@ -8,6 +8,7 @@ import Search from "@/components/global/search"
 import Link from "next/link"
 import React from "react"
 
+
 const ExploreLayout = async ({ children }: { children: React.ReactNode }) => {
   const user = await onAuthenticatedUser()
   return (
