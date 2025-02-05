@@ -13,6 +13,18 @@ export const Message = ({ ...props }) => {
         fill="#333337"
       />
       <path
+        d="M12.8571 2H3.14286C2.51167 2 2 2.51167 2 3.14286V10.8571C2 11.4883 2.51167 12 3.14286 12H12.8571C13.4883 12 14 11.4883 14 10.8571V3.14286C14 2.51167 13.4883 2 12.8571 2Z"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        fill="#333337"
+      />
+      <path
+        d="M8 14C6.89543 14 6 13.1046 6 12H10C10 13.1046 9.10457 14 8 14Z"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        fill="#7A7775"
+      />
+      <path
         fill-rule="evenodd"
         clip-rule="evenodd"
         d="M7 9C7 8.44772 7.44772 8 8 8H16C16.5523 8 17 8.44772 17 9C17 9.55228 16.5523 10 16 10H8C7.44772 10 7 9.55228 7 9Z"

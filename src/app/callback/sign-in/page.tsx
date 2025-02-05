@@ -3,6 +3,11 @@ import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 
 const CompleteSigIn = async () => {
+  // Skip Clerk auth if bypass is enabled
+  if (process.env.NEXT_PUBLIC_BYPASS_AUTH === "true") {
+    return redirect("/group/create")
+  }
+
   const user = await currentUser()
   if (!user) return redirect("/sign-in")
 

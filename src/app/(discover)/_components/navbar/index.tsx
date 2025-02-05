@@ -39,7 +39,7 @@ export const Navbar = async () => {
             className="bg-themeBlack rounded-2xl flex gap-2 border-themeGray hover:bg-themeGray"
           >
             <CheckBadge />
-            Create Group
+            Create Set
           </Button>
         </Link>
         {user.status === 200 ? (

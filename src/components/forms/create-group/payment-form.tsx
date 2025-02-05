@@ -7,7 +7,6 @@ import { usePayments } from "@/hooks/payment"
 import { ErrorMessage } from "@hookform/error-message"
 import { CardElement } from "@stripe/react-stripe-js"
 import dynamic from "next/dynamic"
-import Link from "next/link"
 
 type Props = {
   userId: string
@@ -28,6 +27,7 @@ const GroupList = dynamic(
 const PaymentForm = ({ affiliate, userId, stripeId }: Props) => {
   const {
     onCreateGroup,
+    onSkipPayment,
     isPending,
     register,
     errors,
@@ -62,7 +62,7 @@ const PaymentForm = ({ affiliate, userId, stripeId }: Props) => {
             errors={errors}
             inputType="input"
             type="text"
-            placeholder="Group Name"
+            placeholder="Set Name"
           />
         </div>
         <div className="px-7 my-3">
@@ -83,12 +83,17 @@ const PaymentForm = ({ affiliate, userId, stripeId }: Props) => {
         </div>
         <div className="px-7 flex flex-col gap-5">
           <p className="text-sm text-themeTextGray">
-            Cancel anytime with 1-click. By clicking below, you accept
-            our terms.
+            Cancel anytime with 1-click. By clicking below, you accept our
+            terms.
           </p>
-          <Link className="text-sm text-themeTextGray" href={"/explore"}>
+          <Button
+            type="button"
+            variant="link"
+            onClick={onSkipPayment}
+            className="text-sm text-themeTextGray"
+          >
             Skip for now
-          </Link>
+          </Button>
           <Button
             variant="outline"
             type="submit"

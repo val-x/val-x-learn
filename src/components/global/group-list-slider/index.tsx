@@ -36,7 +36,7 @@ export const GroupListSlider = ({
       {...rest}
     >
       {GROUPLE_CONSTANTS.groupList.map((item, i) => (
-        <SwiperSlide key={item.id} className="content-width-slide ">
+        <SwiperSlide key={item.id} className="content-width-slide">
           {!register ? (
             route ? (
               <Link href={`/explore/${item.path}`}>
@@ -47,7 +47,7 @@ export const GroupListSlider = ({
             )
           ) : (
             i > 0 && (
-              <Label htmlFor={`item-${item.id}`}>
+              <Label htmlFor={`item-${item.id}`} className="cursor-pointer">
                 <span>
                   <Input
                     id={`item-${item.id}`}

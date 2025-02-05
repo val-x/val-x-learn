@@ -2,7 +2,7 @@
 import SignInForm from "@/components/forms/sign-in"
 import { GoogleAuthButton } from "@/components/global/google-oauth-button"
 import { Separator } from "@/components/ui/separator"
-
+import Link from "next/link"
 const SignInPage = () => {
   return (
     <>
@@ -12,6 +12,14 @@ const SignInPage = () => {
         watch courses and become the best version of yourself.
       </p>
       <SignInForm />
+      <div className="text-center mb-4 mt-8">
+        <Link
+          href="/sign-up"
+          className="text-sm text-themeTextGray hover:text-themeTextWhite transition-colors"
+        >
+          Don&apos;t have an account? Sign up
+        </Link>
+      </div>
       <div className="my-10 w-full relative">
         <div className="bg-black p-3 absolute text-themeTextGray text-xs top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           OR CONTINUE WITH

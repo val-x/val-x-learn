@@ -49,6 +49,7 @@ export const usePayments = (
     formState: { errors },
     register,
     watch,
+    getValues,
   } = useForm<z.infer<typeof CreateGroupSchema>>({
     resolver: zodResolver(CreateGroupSchema),
     defaultValues: {
@@ -57,12 +58,12 @@ export const usePayments = (
   })
 
   useEffect(() => {
-    const category = watch(({ category }) => {
-      if (category) {
-        setIsCategory(category)
+    const subscription = watch((value, { name }) => {
+      if (name === "category") {
+        setIsCategory(value.category)
       }
     })
-    return () => category.unsubscribe()
+    return () => subscription.unsubscribe()
   }, [watch])
 
   const { data: Intent, isPending: creatingIntent } = useQuery({
@@ -114,10 +115,43 @@ export const usePayments = (
     },
   })
 
+  const { mutateAsync: createGroupWithoutPayment } = useMutation({
+    mutationFn: async (data: z.infer<typeof CreateGroupSchema>) => {
+      const created = await onCreateNewGroup(userId, data)
+      if (created && created.status === 200) {
+        toast("Success", {
+          description: created.message,
+        })
+        router.push(
+          `/group/${created.data?.group[0].id}/channel/${created.data?.group[0].channel[0].id}`,
+        )
+      }
+      if (created && created.status !== 200) {
+        reset()
+        return toast("Error", {
+          description: created.message,
+        })
+      }
+    },
+  })
+
   const onCreateGroup = handleSubmit(async (values) => createGroup(values))
+
+  const onSkipPayment = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    const values = getValues()
+    if (!values.name || !values.category) {
+      toast("Error", {
+        description: "Please fill in all required fields",
+      })
+      return
+    }
+    await createGroupWithoutPayment(values)
+  }
 
   return {
     onCreateGroup,
+    onSkipPayment,
     isPending,
     register,
     errors,

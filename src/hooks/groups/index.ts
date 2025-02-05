@@ -88,44 +88,42 @@ export const useSearch = (search: "GROUPS" | "POSTS") => {
       setDebounce(query)
     }, 1000)
     return () => clearTimeout(delayInputTimeoutId)
-  }, [query, 1000])
+  }, [query])
 
-  const { refetch, data, isFetched, isFetching } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["search-data", debounce],
-    queryFn: async ({ queryKey }) => {
-      if (search === "GROUPS") {
-        const groups = await onSearchGroups(search, queryKey[1])
+    queryFn: async () => {
+      if (search === "GROUPS" && debounce) {
+        const groups = await onSearchGroups(search, debounce)
         return groups
       }
+      return { status: 200, groups: [] }
     },
-    enabled: false,
   })
 
-  if (isFetching)
-    dispatch(
-      onSearch({
-        isSearching: true,
-        data: [],
-      }),
-    )
-
-  if (isFetched)
-    dispatch(
-      onSearch({
-        isSearching: false,
-        status: data?.status as number,
-        data: data?.groups || [],
-        debounce,
-      }),
-    )
-
   useEffect(() => {
-    if (debounce) refetch()
-    if (!debounce) dispatch(onClearSearch())
-    return () => {
-      debounce
+    if (isFetching) {
+      dispatch(
+        onSearch({
+          isSearching: true,
+          data: [],
+        }),
+      )
+    } else if (data) {
+      dispatch(
+        onSearch({
+          isSearching: false,
+          status: data.status as number,
+          data: data.groups || [],
+          debounce,
+        }),
+      )
     }
-  }, [debounce])
+
+    if (!debounce) {
+      dispatch(onClearSearch())
+    }
+  }, [isFetching, data, debounce, dispatch])
 
   return { query, onSearchQuery }
 }

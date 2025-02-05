@@ -90,7 +90,7 @@ const GroupSettingsForm = ({ groupId }: Props) => {
           register={register}
           name="name"
           placeholder={data?.group?.name!}
-          label="Group Name"
+          label="Set Name"
           errors={errors}
           inputType="input"
           type="text"

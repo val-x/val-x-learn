@@ -1,17 +1,18 @@
 import {
-  AffiliateDuoToneBlack,
-  Buisness,
-  Chat,
-  Courses,
+  BarChart3,
+  BookOpen,
+  Building2,
   CreditCard,
-  Document,
-  Explore,
-  GlobeDuoToneBlack,
+  FileText,
+  Globe,
   Home,
-  IDuotoneBlack,
-  PersonalDevelopment,
-  ZapDouToneBlack,
-} from "@/icons"
+  LayoutGrid,
+  MessageSquare,
+  Settings,
+  Users,
+  Video,
+  Zap,
+} from "lucide-react"
 
 export type MenuProps = {
   id: number
@@ -33,62 +34,63 @@ export const LANDING_PAGE_MENU: MenuProps[] = [
   {
     id: 0,
     label: "Home",
-    icon: <Home />,
+    icon: <Home className="w-4 h-4" />,
     path: "/",
     section: true,
   },
   {
     id: 1,
     label: "Pricing",
-    icon: <CreditCard />,
+    icon: <CreditCard className="w-4 h-4" />,
     path: "#pricing",
     section: true,
   },
   {
-    id: 1,
+    id: 2,
     label: "Explore",
-    icon: <Explore />,
+    icon: <LayoutGrid className="w-4 h-4" />,
     path: "/explore",
   },
 ]
+
 export const GROUP_PAGE_MENU: MenuProps[] = [
   {
     id: 0,
-    label: "Group",
-    icon: <Home />,
+    label: "Overview",
+    icon: <BarChart3 className="w-4 h-4" />,
     path: "/",
     section: true,
   },
   {
     id: 1,
     label: "Courses",
-    icon: <Courses />,
-    path: "#pricing",
+    icon: <BookOpen className="w-4 h-4" />,
+    path: "#courses",
     section: true,
   },
   {
     id: 2,
     label: "Events",
-    icon: <Buisness />,
-    path: "/explore",
+    icon: <Video className="w-4 h-4" />,
+    path: "/events",
   },
   {
     id: 3,
     label: "Members",
-    icon: <PersonalDevelopment />,
-    path: "/explore",
+    icon: <Users className="w-4 h-4" />,
+    path: "/members",
   },
   {
     id: 4,
     label: "About",
-    icon: <Document />,
-    path: "/explore",
+    icon: <FileText className="w-4 h-4" />,
+    path: "/about",
   },
   {
     id: 5,
-    label: "Huddle",
-    icon: <Chat />,
-    path: "/explore",
+    label: "Chat",
+    icon: <MessageSquare className="w-4 h-4" />,
+    path: "/chat",
   },
 ]
 
@@ -96,31 +98,31 @@ export const SIDEBAR_SETTINGS_MENU: MenuProps[] = [
   {
     id: 0,
     label: "General",
-    icon: <IDuotoneBlack />,
+    icon: <Settings className="w-4 h-4" />,
     path: "",
   },
   {
     id: 1,
     label: "Subscriptions",
-    icon: <CreditCard />,
+    icon: <CreditCard className="w-4 h-4" />,
     path: "subscriptions",
   },
   {
     id: 2,
-    label: "Affiliates",
-    icon: <AffiliateDuoToneBlack />,
-    path: "affiliates",
+    label: "Business",
+    icon: <Building2 className="w-4 h-4" />,
+    path: "business",
   },
   {
     id: 3,
     label: "Domain Config",
-    icon: <GlobeDuoToneBlack />,
+    icon: <Globe className="w-4 h-4" />,
     path: "domains",
   },
   {
     id: 4,
     label: "Integration",
-    icon: <ZapDouToneBlack />,
+    icon: <Zap className="w-4 h-4" />,
     path: "integrations",
     integration: true,
   },
@@ -144,6 +146,6 @@ export const INTEGRATION_LIST_ITEMS: IntegrationsListItemProps[] = [
     logo: "914be637-39bf-47e6-bb81-37b553163945",
     title: "Connect Stripe Account",
     modalDescription:
-      "The world’s most successful platforms and marketplaces including Shopify and DoorDash, use Stripe Connect.",
+      "The world's most successful platforms and marketplaces including Shopify and DoorDash, use Stripe Connect.",
   },
 ]
